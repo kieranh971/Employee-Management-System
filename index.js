@@ -4,8 +4,10 @@ const prompts = require("./assets/prompts");
 const table = require("console.table");
 const db = require("./config/connection");
 
+init();
+
 async function init() {
-    const userSelect = await inquirer.prompt(questions.initialPrompt);
+    const userSelect = await inquirer.prompt(prompts.initialPrompt);
     switch (userSelect.initial) {
         case "View Departments":
             displayDepartments();
