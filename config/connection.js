@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-var connection = mysql.createConnection({
+var db = mysql.createConnection({
     host: "localhost",
     port: 3003,
     user: "root",
@@ -8,8 +8,8 @@ var connection = mysql.createConnection({
     database: "employee_management_db"
 });
 
-connection.connect((err) => {
+db.connect((err) => {
     if (err) throw err;
 })
 
-module.exports = connection;
+module.exports = db;
