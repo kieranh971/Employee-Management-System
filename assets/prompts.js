@@ -1,5 +1,5 @@
-// Modify roles and manager's not functioning - emp is not defined, both default to manager prompt
-// Add option now working, correct following: add new employee, add new role
+// Modify role seems to time out
+// Modify manager emp is not defined
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const db = require("../app");
@@ -33,9 +33,9 @@ function viewChoices() {
             choices: ["Departments", "Roles", "Employees"]
         }
     ]).then(function(viewAnswers) {
-        if(viewAnswers === "Departments") {
+        if(viewAnswers.viewResponse === "Departments") {
             viewDept()
-        } else if (viewAnswers === "Roles") {
+        } else if (viewAnswers.viewResponse === "Roles") {
             viewRole()
         } else {
             viewEmployee()
@@ -123,7 +123,7 @@ function newRole() {
                 choices: function(){
                     const deptArray = []
                     for(let i = 0; i<res.length; i++){
-                        deptArray.push(`${res[i].id} | ${res[i].name}`);
+                        deptArray.push(`${res[i].id} | ${res[i].dept_name}`);
                     } return deptArray
                 }
             }
@@ -218,7 +218,7 @@ function retrieveMgr(){
                 choices: function(){
                     const MgrArray = []
                     for(let i = 0; i < res.length - 1; i++){
-                        MgrArray.push(`${res[i].id} | ${res[i].title}`);
+                        MgrArray.push(`${res[i].id} | ${res[i].first_name} ${res[i].last_name}`);
                     } return MgrArray
                 }
             }
