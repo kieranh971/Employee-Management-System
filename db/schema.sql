@@ -13,7 +13,7 @@ CREATE TABLE roles (
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(10,2) NOT NULL,
     department_id INT NOT NULL,
-    FOREIGN KEY (department_id) REFERENCES department(id),
+    -- FOREIGN KEY (department_id) REFERENCES department(id),
     PRIMARY KEY (id)
 );
 
@@ -23,7 +23,8 @@ CREATE TABLE employee (
     last_name VARCHAR(30) NOT NULL,
     role_id INT NOT NULL,
     manager_id INT NULL,
-    FOREIGN KEY (role_id) REFERENCES roles(id),
-    FOREIGN KEY (manager_id) REFERENCES employee(id),
+    is_manager BOOLEAN NOT NULL,
+    -- FOREIGN KEY (role_id) REFERENCES roles(id),
+    -- FOREIGN KEY (manager_id) REFERENCES employee(id),
     PRIMARY KEY (id)
 );
