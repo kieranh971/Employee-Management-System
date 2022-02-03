@@ -1,5 +1,3 @@
-// Modify role seems to time out
-// Modify manager emp is not defined
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const db = require("../app");
@@ -304,7 +302,7 @@ function modifyEmpRole(){
                 choices: function(){
                     const EmpChoiceArr = []
                     for(let i=0; i < res.length; i++){
-                        EmpChoiceArr.push(`${res[i].first_name} | ${res[i].last_name}`);
+                        EmpChoiceArr.push(`${res[i].id} | ${res[i].first_name} ${res[i].last_name}`);
                     } return EmpChoiceArr
                 }
             }
@@ -357,7 +355,7 @@ function modifyEmpMgr(){
                 choices: function(){
                     const EmpChoiceArr = []
                     for(let i=0; i < res.length; i++){
-                        EmpChoiceArr.push(`${res[i].id} | ${res[i].first_name}`);
+                        EmpChoiceArr.push(`${res[i].id} | ${res[i].first_name} ${res[i].last_name}`);
                     } return EmpChoiceArr
                 }
             }
@@ -368,7 +366,7 @@ function modifyEmpMgr(){
     })
 }
 // Then select new manager for employee
-function modifyEmpMgrSel(){
+function modifyEmpMgrSel(emp){
     const employee = emp
     db.connection.query("SELECT id, first_name, last_name FROM employee WHERE is_manager = 1", function(err, res){
         inquirer.prompt([
